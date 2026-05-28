@@ -8,7 +8,7 @@ arch:
   - aarch64
 init: false
 boot: manual
-image: "ghcr.io/grimmory-tools/grimmory:v3.1.0"
+image: "ghcr.io/grimmory-tools/grimmory"
 services:
   - "mysql:need"
 ports:
@@ -16,12 +16,9 @@ ports:
 webui: "http://[HOST]:[PORT:6060]"
 watchdog: "http://[HOST]:[PORT:6060]/api/v1/healthcheck"
 map:
-  - type: media
-    read_only: false
-  - type: share
-    read_only: false
-  - type: addon_config
-    read_only: false
+  - media:rw
+  - share:rw
+  - addon_config:rw
 options:
   timezone: "Europe/Berlin"
   db_host: "core-mariadb"
