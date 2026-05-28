@@ -1,0 +1,65 @@
+name: "Grimmory"
+version: "3.1.0"
+slug: "grimmory"
+description: "Self-hosted book & comic library (EPUB, PDF, CBZ, MOBI) with metadata, OPDS, reading progress and multi-user support."
+url: "https://github.com/grimmory-tools/grimmory"
+
+arch:
+  - amd64
+  - aarch64
+
+# Grimmory has its own init system (JVM), disable Docker default init
+init: false
+
+# Manual start — user decides when to start
+boot: manual
+
+# Use the official Grimmory image directly; version must match the image tag
+image: "ghcr.io/grimmory-tools/grimmory"
+
+# Declare MariaDB dependency so HA warns if it's not running
+services:
+  - "mysql:need"
+
+ports:
+  6060/tcp: 6060
+
+# Opens the UI directly from the add-on page
+webui: "http://[HOST]:[PORT:6060]"
+
+# Health check using Grimmory's built-in endpoint
+watchdog: "http://[HOST]:[PORT:6060]/api/v1/healthcheck"
+
+# Folders mounted into the container
+map:
+  - type: media
+    read_only: false
+  - type: share
+    read_only: false
+  - type: addon_config
+    read_only: false
+
+# Default user-configurable options
+options:
+  timezone: "Europe/Berlin"
+  db_host: "core-mariadb"
+  db_port: 3306
+  db_name: "grimmory"
+  db_user: "grimmory"
+  db_password: "grimmory_secret"
+  swagger_enabled: false
+
+schema:
+  timezone: str
+  db_host: str
+  db_port: int
+  db_name: str
+  db_user: str
+  db_password: password
+  swagger_enabled: bool
+
+# Backup: shut down cleanly before backup to avoid DB corruption
+backup: cold
+
+# Stage: experimental until tested
+stage: experimental

@@ -1,0 +1,25 @@
+configuration:
+  timezone:
+    name: Timezone
+    description: Your local timezone, e.g. Europe/Berlin
+  db_host:
+    name: Database Host
+    description: Hostname of the MariaDB instance. Use 'core-mariadb' for the HA MariaDB add-on.
+  db_port:
+    name: Database Port
+    description: Port of the MariaDB instance (default 3306).
+  db_name:
+    name: Database Name
+    description: Name of the database created for Grimmory in MariaDB.
+  db_user:
+    name: Database User
+    description: Username for the Grimmory database.
+  db_password:
+    name: Database Password
+    description: Password for the Grimmory database user.
+  swagger_enabled:
+    name: Enable Swagger UI
+    description: Expose the API documentation at /swagger-ui. Disable in production.
+
+network:
+  6060/tcp: Grimmory Web UI
