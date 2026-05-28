@@ -15,7 +15,7 @@ init: false
 boot: manual
 
 # Use the official Grimmory image directly; version must match the image tag
-image: "ghcr.io/grimmory-tools/grimmory"
+image: "ghcr.io/grimmory-tools/grimmory:v3.1.0"
 
 # Declare MariaDB dependency so HA warns if it's not running
 services:
