@@ -1,5 +1,5 @@
 name: "Grimmory"
-version: "3.1.0"
+version: "v3.1.0"
 slug: "grimmory"
 description: "Self-hosted book & comic library (EPUB, PDF, CBZ, MOBI) with metadata, OPDS, reading progress and multi-user support."
 url: "https://github.com/grimmory-tools/grimmory"
