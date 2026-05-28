@@ -8,6 +8,7 @@ arch:
   - aarch64
 init: false
 boot: manual
+legacy: true
 image: "ghcr.io/grimmory-tools/grimmory"
 services:
   - "mysql:need"
@@ -20,20 +21,18 @@ map:
   - share:rw
   - addon_config:rw
 options:
-  timezone: "Europe/Berlin"
-  db_host: "core-mariadb"
-  db_port: 3306
-  db_name: "grimmory"
-  db_user: "grimmory"
-  db_password: "grimmory_secret"
-  swagger_enabled: false
+  DATABASE_URL: "jdbc:mariadb://core-mariadb:3306/grimmory?useUnicode=true&characterEncoding=utf8mb4"
+  DATABASE_USERNAME: "grimmory"
+  DATABASE_PASSWORD: "grimmory_secret"
+  TZ: "Europe/Berlin"
+  SWAGGER_ENABLED: "false"
+  DISK_TYPE: "LOCAL"
 schema:
-  timezone: str
-  db_host: str
-  db_port: int
-  db_name: str
-  db_user: str
-  db_password: password
-  swagger_enabled: bool
+  DATABASE_URL: str
+  DATABASE_USERNAME: str
+  DATABASE_PASSWORD: password
+  TZ: str
+  SWAGGER_ENABLED: str
+  DISK_TYPE: str
 backup: cold
 stage: experimental
